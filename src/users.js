@@ -2,7 +2,6 @@ import React from "react";
 import "./users.css";
 import Card from "@mui/material/Card";
 import EditIcon from "@mui/icons-material/Edit";
-
 function Users() {
   const users = [
     {
@@ -20,11 +19,11 @@ function Users() {
   ];
   return (
     <div className="users">
-      {users.map((ur) => (
-        <Card variant="outlined">
-          <img className="img-container" src={ur.avatar}  alt={ur.name} />
+      {users.map((ur, index) => (
+        <Card key={index} variant="outlined">
+          <img className="img-container" src={ur.avatar} alt={ur.name} />
           <h2 className="name-container">{ur.name}</h2>
-          <EditIcon className="edit-icon" />
+          <EditIcon className="edit-icon-container" />
         </Card>
       ))}
     </div>
