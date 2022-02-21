@@ -1,21 +1,45 @@
-.img-container {
+/* .img-container {
+  width: 350px;
   height: 300px;
-  width: 300px;
   object-fit: cover;
+}
+.users-list-container {
+  gap: 20px;
+  margin: 20px;
+  margin-right: 100px;
+  border-radius:  40px;
+  width: 350px;
+  height: 600px;
+   
+ 
 }
 .users {
   display: flex;
-  gap: 20px;
-  margin: 40px;
-  border-radius: 20px;
+  flex-wrap: wrap;
 }
-
-.edit-icon-container {
-  position: relative;
-  right: 130px;
-  color: slateblue;
+.details-container {
+  background-color: darksalmon;
+}
+.name-container {
+  color: mediumvioletred;
+}
+.profession-container {
+  color: darkviolet;
+}
+.edit-container {
+  color: darkviolet;
   cursor: pointer;
 }
-.img-container:hover {
-  transform: scale(1.1);
+.place-container {
+  color: deeppink;
 }
+.quotes-container {
+  color: indianred;
+}
+.delete-container {
+  color: red;
+ cursor: pointer;
+}
+.users-list-container :hover{
+  transform: scale(1.1);
+} */

@@ -1,11 +1,4 @@
-import React from "react";
-import "./users.css";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from '@mui/icons-material/Delete';
-function Users() {
-  const users= [
+const users = [
     {
       name: "Scarlett",
       avatar:"https://www.microsoft.com/insidetrack/blog/uploads/prod/2018/06/IMG_1786.jpg",
@@ -107,22 +100,3 @@ function Users() {
         quotes:  "If life were predictable it would cease to be life, and be without flavor.",
       },
   ];
-  return (
-    <div className="users">
-      {users.map((ur, index) => (
-        <Card className="users-list-container" key={index} variant="outlined">
-          <div className="details -container">
-            <img className="img-container" src={ur.avatar} alt={ur.name} />
-            <h2 className="name-container">{ur.name}</h2>
-          <h4 className="profession-container">{ur.profession}</h4>
-            <p className="place-container">{ur.place}</p>
-            <p className="quotes-container">{ur.quotes}</p>
-            <EditIcon className="edit-container" />
-            <DeleteIcon className="delete-container"/>
-          </div>
-        </Card>
-      ))}
-    </div>
-  );
-}
-export default Users;
