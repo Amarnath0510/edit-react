@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
-// import Users from "./users.js";
-// import AddUser from "./addusers.js";
 import { useState } from "react";
 import Card from "@mui/material/Card";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from '@mui/icons-material/Delete';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import DeleteIcon from "@mui/icons-material/Delete";
+import {Link,Switch,Route} from "react-router-dom";
+import { IconButton } from "@mui/material";
+import { AddUser } from "./AddUser";
 
-// import { SettingsSystemDaydreamRounded } from "@mui/icons-material";
 function App() {
   const INITIAL_USERS = [
     {
@@ -134,111 +132,100 @@ function App() {
 
   return (
     <div className="App">
-    <AddUser users={users} setUsers={setUsers}/>   
+    <nav className="nav1">
+    <Link to="/">Home</Link>
+    <Link to="/users">Users</Link>
+    <Link to="/addusers">Add Users</Link>
+    </nav>
+    <Switch>
+    <Route exact path="/">
+    <Home/>
+    </Route>
+    <Route path="/addusers">
+    <AddUser users={users} setUsers={setUsers} />
+    </Route>
+    <Route path="/users">
     <UserList users={users} />
+    </Route>
+    <Route path="**">
+    <NotFound/>
+    </Route>
+    </Switch>
+  
     </div>
   );
 }
 
-function AddUser({users,setUsers}){
-  const [name, setName] = useState("");
-  const [profession, setProfession] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [place, setPlace] = useState("");
-  const [quotes, setQuotes] = useState("");
- 
-  const addUser = () => {
-    console.log("AddingUsers...", name, profession, avatar, place, quotes);
-    const newUser = {
-      name,
-      profession,
-      avatar,
-      place,
-      quotes,
-    };
-    console.log(newUser);
-    setUsers([...users, newUser]);
-  };
 
+
+function Home(){
   return(
-    <div className="add-user">
-      <TextField 
-      value={name}
-      onChange={(e) => setName(e.target.value)}
-      placeholder="Enter a name"
-      
-      variant="standard" />
+    <div className="home-container">
+    <h1 className="welcome1">Welcome to users platform</h1>
+    
+    </div>
+    )
+}
 
-      
-        <TextField
-          value={profession}
-          onChange={(e) => setProfession(e.target.value)}
-          placeholder="Enter a profession"
-          variant="standard" 
-        />
-        <TextField
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-          placeholder="Paste a avatar"
-          variant="standard"
-        />
-        <TextField
-          value={place}
-          onChange={(e) => setPlace(e.target.value)}
-          placeholder="Enter a place"
-          variant="standard"
-        />
-        <TextField
-          value={quotes}
-          onChange={(e) => setQuotes(e.target.value)}
-          placeholder="Enter a quotes"
-          variant="standard"
-        />
-        
-        <Button variant="outlined" onClick={addUser}>AddUser</Button>
-      </div>
 
+
+function NotFound(){
+  return(
+    <div>
+    <h2>Not Found 404</h2>
+    <img  src="https://cdn.dribbble.com/users/1676373/screenshots/4177728/404.gif" alt="Not found404" className="not-found"/>
+    </div>
   )
 }
 
 
 
 
-function UserList({users}){
-  return(
+function UserList({ users }) {
+  return (
     <section className="section-container">
-    {users.map(({name,profession,avatar,place,quotes})=>(
-      <Users name={name} profession={profession} avatar={avatar} place={place} quotes={quotes}/>
-    ))}
+      {users.map(({ name, profession, avatar, place, quotes },index) => (
+        <Users
+        key={index}
+          name={name}
+          profession={profession}
+          avatar={avatar}
+          place={place}
+          quotes={quotes}
+          id={index} 
+        />
+      ))}
     </section>
   );
 }
 
 
 
-function Users({name,profession,avatar,place,quotes,index}){
-  
-    return (
-      <div className="users">
-     
-          <Card className="users-list-container" key={index} variant="outlined">
-            <div className="details -container">
-              <img className="img-container" src={avatar} alt={name} />
-              <h2 className="name-container">{name}</h2>
-            <h4 className="profession-container">{profession}</h4>
-              <p className="place-container">{place}</p>
-              <p className="quotes-container">{quotes}</p>
-              <EditIcon className="edit-container" />
-              <DeleteIcon className="delete-container"/>
-            </div>
-          </Card>
-        
-      </div>
-    );
-    
-        }
-    
-  
- 
+
+function Users({ name, profession, avatar, place, quotes}) {
+  return (
+    <div className="users">
+      <Card className="users-list-container"  variant="outlined">
+        <div className="details -container">
+          <img className="img-container" src={avatar} alt={name} />
+          <h2 className="name-container">{name}</h2>
+          <h4 className="profession-container">{profession}</h4>
+          <p className="place-container">{place}</p>
+          <p className="quotes-container">{quotes}</p>
+          <IconButton onClick={()=>{}}>
+          <EditIcon className="edit-container" />
+          </IconButton>
+         <IconButton onClick={()=>{}}>        
+         <DeleteIcon className="delete-container" />           
+          </IconButton>
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+
 
 export default App;
+
+
