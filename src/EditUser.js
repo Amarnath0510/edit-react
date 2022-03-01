@@ -2,27 +2,34 @@ import React from "react";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {  useParams } from "react-router-dom/cjs/react-router-dom.min";
 
-export function AddUser({ users, setUsers }) {
-  const history=useHistory();
-  const [name, setName] = useState("");
-  const [profession, setProfession] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [place, setPlace] = useState("");
-  const [quotes, setQuotes] = useState("");
+export function EditUser({ users, setUsers }) {
+  
+  const {id}=useParams();
+  const user=users[id];
+  console.log(id,user );
+  const [name, setName] = useState(user.name);
+  const [profession, setProfession] = useState(user.profession);
+  const [avatar, setAvatar] = useState(user.avatar);
+  const [place, setPlace] = useState(user.place);
+  const [quotes, setQuotes] = useState(user.quotes);
 
-  const addUser = () => {
-    console.log("AddingUsers...", name, profession, avatar, place, quotes);
-    const newUser = {
-      name,
+  const editUser = () => {
+
+    const updatedUser = {
+      name, 
       profession,
       avatar,
       place,
       quotes,
     };
-    console.log(newUser);
-    setUsers([...users,newUser]);
+    console.log(updatedUser);
+
+
+    const  copyUserList= [...users];
+    copyUserList[id]=updatedUser;
+    setUsers(copyUserList);
   };
 
   return (
@@ -54,9 +61,12 @@ export function AddUser({ users, setUsers }) {
         placeholder="Enter a quotes"
         variant="standard" />
 
-      <Button variant="outlined" onClick={addUser}>
-        AddUser
+      <Button variant="outlined" onClick={editUser}>
+        Save
       </Button>
     </div>
   );
 }
+
+
+// console.log("AddingUsers...", name, profession, avatar, place, quotes);

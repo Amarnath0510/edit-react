@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
 import { useState } from "react";
-import Card from "@mui/material/Card";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import {Link,Switch,Route} from "react-router-dom";
-import { IconButton } from "@mui/material";
+import { Link, Switch, Route } from "react-router-dom";
 import { AddUser } from "./AddUser";
+
+import { UserList } from "./UserList";
+import { Home } from "./Home";
+import { NotFound } from "./NotFound";
+
+import { EditUser } from "./EditUser";
 
 function App() {
   const INITIAL_USERS = [
@@ -111,7 +113,7 @@ function App() {
     {
       name: "Denverson",
       avatar:
-        "https://visaguideinfo.com/wp-content/uploads/2020/04/automobile-engineer.jpg",
+        "https://www.bmwgroup.jobs/content/dam/grpw/websites/bmwgroup_jobs/cn/all-jobfields/engineering/BMW-Careers-engineering-engineer-laptop-car-hm.jpg.grp-transform/small/BMW-Careers-engineering-engineer-laptop-car-hm.jpg",
       id: "19",
       profession: "Automobile Engineer",
       place: "Toronto",
@@ -132,100 +134,35 @@ function App() {
 
   return (
     <div className="App">
-    <nav className="nav1">
-    <Link to="/">Home</Link>
-    <Link to="/users">Users</Link>
-    <Link to="/addusers">Add Users</Link>
-    </nav>
-    <Switch>
-    <Route exact path="/">
-    <Home/>
-    </Route>
-    <Route path="/addusers">
-    <AddUser users={users} setUsers={setUsers} />
-    </Route>
-    <Route path="/users">
-    <UserList users={users} />
-    </Route>
-    <Route path="**">
-    <NotFound/>
-    </Route>
-    </Switch>
-  
-    </div>
-  );
-}
-
-
-
-function Home(){
-  return(
-    <div className="home-container">
-    <h1 className="welcome1">Welcome to users platform</h1>
+      <nav className="nav1">
+        <Link to="/">Home</Link>
+        <Link to="/users">Users</Link>
+        <Link to="/addusers">Add Users</Link>
+      </nav>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/users/edit/:id">
+        <EditUser users={users} setUsers={setUsers}/>
+        </Route>
+        <Route path="/addusers">
+          <AddUser users={users} setUsers={setUsers} />
+        </Route>
+        <Route path="/users">
+          <UserList users={users} setUsers={setUsers} />
+        </Route>
     
-    </div>
-    )
-}
 
-
-
-function NotFound(){
-  return(
-    <div>
-    <h2>Not Found 404</h2>
-    <img  src="https://cdn.dribbble.com/users/1676373/screenshots/4177728/404.gif" alt="Not found404" className="not-found"/>
-    </div>
-  )
-}
-
-
-
-
-function UserList({ users }) {
-  return (
-    <section className="section-container">
-      {users.map(({ name, profession, avatar, place, quotes },index) => (
-        <Users
-        key={index}
-          name={name}
-          profession={profession}
-          avatar={avatar}
-          place={place}
-          quotes={quotes}
-          id={index} 
-        />
-      ))}
-    </section>
-  );
-}
-
-
-
-
-function Users({ name, profession, avatar, place, quotes}) {
-  return (
-    <div className="users">
-      <Card className="users-list-container"  variant="outlined">
-        <div className="details -container">
-          <img className="img-container" src={avatar} alt={name} />
-          <h2 className="name-container">{name}</h2>
-          <h4 className="profession-container">{profession}</h4>
-          <p className="place-container">{place}</p>
-          <p className="quotes-container">{quotes}</p>
-          <IconButton onClick={()=>{}}>
-          <EditIcon className="edit-container" />
-          </IconButton>
-         <IconButton onClick={()=>{}}>        
-         <DeleteIcon className="delete-container" />           
-          </IconButton>
-        </div>
-      </Card>
+        <Route path="**">
+          <NotFound />
+        </Route>
+      </Switch>
     </div>
   );
 }
-
+ 
 
 
 export default App;
-
 
