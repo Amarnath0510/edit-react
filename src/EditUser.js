@@ -2,13 +2,16 @@ import React from "react";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import {  useParams } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useParams,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 
 export function EditUser({ users, setUsers }) {
-  
-  const {id}=useParams();
-  const user=users[id];
-  console.log(id,user );
+  const history = useHistory();
+  const { id } = useParams();
+  const user = users[id];
+  console.log(id, user);
   const [name, setName] = useState(user.name);
   const [profession, setProfession] = useState(user.profession);
   const [avatar, setAvatar] = useState(user.avatar);
@@ -16,9 +19,8 @@ export function EditUser({ users, setUsers }) {
   const [quotes, setQuotes] = useState(user.quotes);
 
   const editUser = () => {
-
     const updatedUser = {
-      name, 
+      name,
       profession,
       avatar,
       place,
@@ -26,10 +28,10 @@ export function EditUser({ users, setUsers }) {
     };
     console.log(updatedUser);
 
-
-    const  copyUserList= [...users];
-    copyUserList[id]=updatedUser;
+    const copyUserList = [...users];
+    copyUserList[id] = updatedUser;
     setUsers(copyUserList);
+    history.push("/users");
   };
 
   return (
@@ -38,28 +40,33 @@ export function EditUser({ users, setUsers }) {
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Enter a name"
-        variant="standard" />
+        variant="standard"
+      />
 
       <TextField
         value={profession}
         onChange={(e) => setProfession(e.target.value)}
         placeholder="Enter a profession"
-        variant="standard" />
+        variant="standard"
+      />
       <TextField
         value={avatar}
         onChange={(e) => setAvatar(e.target.value)}
         placeholder="Paste a avatar"
-        variant="standard" />
+        variant="standard"
+      />
       <TextField
         value={place}
         onChange={(e) => setPlace(e.target.value)}
         placeholder="Enter a place"
-        variant="standard" />
+        variant="standard"
+      />
       <TextField
         value={quotes}
         onChange={(e) => setQuotes(e.target.value)}
         placeholder="Enter a quotes"
-        variant="standard" />
+        variant="standard"
+      />
 
       <Button variant="outlined" onClick={editUser}>
         Save
@@ -67,6 +74,5 @@ export function EditUser({ users, setUsers }) {
     </div>
   );
 }
-
 
 // console.log("AddingUsers...", name, profession, avatar, place, quotes);

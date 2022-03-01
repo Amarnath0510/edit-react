@@ -23,6 +23,7 @@ export function AddUser({ users, setUsers }) {
     };
     console.log(newUser);
     setUsers([...users,newUser]);
+    history.push("/users");
   };
 
   return (

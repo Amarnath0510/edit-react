@@ -1,9 +1,16 @@
 import React from "react";
 import Card from "@mui/material/Card";
 
-
-
-  export function Users({ name, profession, avatar, place, quotes ,id,editButton,deleteButton}) {
+export function Users({
+  name,
+  profession,
+  avatar,
+  place,
+  quotes,
+  id,
+  editButton,
+  deleteButton,
+}) {
   return (
     <div className="users">
       <Card className="users-list-container" variant="outlined">
@@ -14,17 +21,10 @@ import Card from "@mui/material/Card";
           <p className="place-container">{place}</p>
           <p className="quotes-container">{quotes}</p>
 
-        {editButton}{deleteButton}
-         
-         
+          {editButton}
+          {deleteButton}
         </div>
       </Card>
     </div>
   );
 }
-
-
-
-
-
-    
