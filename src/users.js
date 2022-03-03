@@ -13,7 +13,7 @@ export function Users({
 }) {
   return (
     <div className="users">
-      <Card className="users-list-container" variant="outlined">
+      <Card style={{borderRadius:"10px"}}className="users-list-container" variant="outlined">
         <div className="details -container">
           <img className="img-container" src={avatar} alt={name} />
           <h2 className="name-container">{name}</h2>

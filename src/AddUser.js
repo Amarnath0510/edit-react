@@ -1,10 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-export function AddUser({ users, setUsers }) {
+export function AddUser() {
   const history=useHistory();
   const [name, setName] = useState("");
   const [profession, setProfession] = useState("");
@@ -12,6 +12,13 @@ export function AddUser({ users, setUsers }) {
   const [place, setPlace] = useState("");
   const [quotes, setQuotes] = useState("");
 
+
+
+  useEffect(()=>{
+    console.log("User form is updated",{
+      name,profession,avatar,place,quotes,
+    });
+  },[]);
   const addUser = () => {
     console.log("AddingUsers...", name, profession, avatar, place, quotes);
     const newUser = {
@@ -22,8 +29,16 @@ export function AddUser({ users, setUsers }) {
       quotes,
     };
     console.log(newUser);
-    setUsers([...users,newUser]);
-    history.push("/users");
+    fetch(`https://616b1eb916e7120017fa1233.mockapi.io/users`,{
+      method:"POST",
+      body:JSON.stringify(newUser),
+      headers:{
+        "Content-type":"application/json",
+      },
+      }).then(()=>history.push("/users"))
+
+    
+   
   };
 
   return (
@@ -61,3 +76,7 @@ export function AddUser({ users, setUsers }) {
     </div>
   );
 }
+
+fetch("https://616b1eb916e7120017fa1233.mockapi.io/users")
+.then((data)=>data.json())
+.then((urs)=>console.log(urs));
