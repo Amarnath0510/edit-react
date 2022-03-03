@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -7,16 +7,31 @@ import {
   useHistory,
 } from "react-router-dom/cjs/react-router-dom.min";
 
-export function EditUser({ users, setUsers }) {
-  const history = useHistory();
+export function EditUser({}) {
+  
   const { id } = useParams();
-  const user = users[id];
-  console.log(id, user);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    fetch(`https://616b1eb916e7120017fa1233.mockapi.io/users/${id}`, {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((ur) => setUser(ur));
+  }, []);
+
+  return user ? <UpdatedUser user={user} /> : "";
+}
+
+// const user = users[id];
+// console.log(id, user);
+
+function UpdatedUser({ user }) {
   const [name, setName] = useState(user.name);
   const [profession, setProfession] = useState(user.profession);
   const [avatar, setAvatar] = useState(user.avatar);
   const [place, setPlace] = useState(user.place);
   const [quotes, setQuotes] = useState(user.quotes);
+  const history = useHistory();
 
   const editUser = () => {
     const updatedUser = {
@@ -27,11 +42,19 @@ export function EditUser({ users, setUsers }) {
       quotes,
     };
     console.log(updatedUser);
+    // }
+    //   const copyUserList = [...users];
+    //   copyUserList[id] = updatedUser;
+    //   setUsers(copyUserList);
+    //   history.push("/users");
 
-    const copyUserList = [...users];
-    copyUserList[id] = updatedUser;
-    setUsers(copyUserList);
-    history.push("/users");
+    fetch(`https://616b1eb916e7120017fa1233.mockapi.io/users/${user.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updatedUser),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => history.push("/users"));
   };
 
   return (

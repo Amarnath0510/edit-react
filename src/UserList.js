@@ -23,7 +23,7 @@ const deleteUser =(id)=>{
   const history = useHistory();
   return (
     <section className="section-container">
-      {users.map(({ name, profession, avatar, place, quotes,id}, index) => (
+      {users.map(({ name, profession, avatar, place, quotes,id}) => (
         <Users
           key={id}
           id={id }
@@ -33,7 +33,7 @@ const deleteUser =(id)=>{
           place={place}
           quotes={quotes}
           editButton={
-            <IconButton onClick={() => history.push("/users/edit/" + index)}>
+            <IconButton onClick={() => history.push("/users/edit/" + id)}>
               <EditIcon className="edit-container" />
             </IconButton>
           }
