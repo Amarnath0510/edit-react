@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+
 import TextField from "@mui/material/TextField";
 
 import Button from "@mui/material/Button";
@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { useFormik } from "formik";
 
 
-const formValidationSchema=yup.object({
+ export const formValidationSchema=yup.object({
   name:yup.string().required("Why not fill this name?").min(4,"Your name must be longer"),
   profession:yup.string().required("Why not fill this profession?").min(4,"Your profession must be longer"),
   avatar:yup.string().required("Why not fill this avatar Url?").min(4,"Your avatar must be longer"),
