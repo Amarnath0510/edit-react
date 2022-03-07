@@ -4,17 +4,19 @@ import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+const API_URL="https://users-edit.herokuapp.com"
+// const MOCK_URL="https://616b1eb916e7120017fa1233.mockapi.io"
 export function UserList() {
   const[users,setUsers]=useState([]);
   const getUsers=()=>{
-    fetch("https://616b1eb916e7120017fa1233.mockapi.io/users")
+    fetch(`${API_URL}/users`)
     .then((data)=>data.json())
     .then((urs)=>setUsers(urs))
   };
   useEffect(getUsers,[]);
 const deleteUser =(id)=>{
   fetch(
-    `https://616b1eb916e7120017fa1233.mockapi.io/users/${id}`,
+    `${API_URL}/users/${id}`,
     {
       method:"DELETE",
 }).then(()=>getUsers());
