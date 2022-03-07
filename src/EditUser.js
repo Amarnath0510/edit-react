@@ -3,6 +3,7 @@ import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useFormik } from "formik";
+import {API_URL} from "./globalconstants.js";
 import {
   useParams,
   useHistory,
@@ -13,12 +14,12 @@ export function EditUser() {
   const { id } = useParams();
   const [user, setUser] = useState(null);
   useEffect(() => {
-    fetch(`https://616b1eb916e7120017fa1233.mockapi.io/users/${id}`, {
+    fetch(`${API_URL}/users/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())
       .then((ur) => setUser(ur));
-  }, []);
+  }, [id]);
 
   return user ? <UpdatedUser user={user} /> : "";
 }
@@ -67,7 +68,7 @@ function UpdatedUser({ user }) {
     //   setUsers(copyUserList);
     //   history.push("/users");
 
-    fetch(`https://616b1eb916e7120017fa1233.mockapi.io/users/${user.id}`, {
+    fetch(`${API_URL}/users/${user.id}`, {
       method: "PUT",
       body: JSON.stringify(updatedUser),
       headers: {

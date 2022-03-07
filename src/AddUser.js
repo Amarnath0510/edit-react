@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import {API_URL} from "./globalconstants.js";
 
 
  export const formValidationSchema=yup.object({
@@ -59,7 +60,7 @@ export function AddUser() {
     //   quotes,
     // };
      
-    fetch(`https://616b1eb916e7120017fa1233.mockapi.io/users`,{
+    fetch(`${API_URL}/users`,{
       method:"POST",
       body:JSON.stringify(newUser),
       headers:{
