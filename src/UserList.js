@@ -3,7 +3,7 @@ import { Users } from "./Users";
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import { API_URL } from "./globalconstants";
 // const API_URL="https://users-edit.herokuapp.com"
 // const MOCK_URL="https://616b1eb916e7120017fa1233.mockapi.io"
