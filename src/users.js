@@ -9,6 +9,7 @@ export function Users({
   place,
   quotes,
   id,
+
   editButton,
   deleteButton,
 }) {

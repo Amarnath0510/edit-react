@@ -7,4 +7,4 @@ export function NotFound() {
       <img src="https://cdn.dribbble.com/users/1676373/screenshots/4177728/404.gif" alt="Not found404" className="not-found" />
     </div>
   );
-}
+  }

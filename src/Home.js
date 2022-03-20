@@ -8,5 +8,5 @@ export function Home() {
       <h3 className="welcome2">A place where you can add users,edit users,delete users and get to know about name,place ,profession and lot about them🕺🕺👨🏿‍🤝‍👨🏼</h3>
     </div>
   );
-}
+  }
   

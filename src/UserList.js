@@ -16,7 +16,7 @@ export function UserList() {
   };
   useEffect(getUsers,[]);
 const deleteUser =(id)=>{
-  fetch(
+  fetch( 
     `${API_URL}/users/${id}`,
     {
       method:"DELETE",

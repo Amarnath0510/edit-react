@@ -20,7 +20,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 
 function App() {
-  // const API_URL="https://users-edit.herokuapp.com"
+  // const API_URL="https://users-edit.herokuapp.com";
 
 //  const users= [
 //     {
@@ -133,6 +133,9 @@ function App() {
   useEffect(() => {
     // fetch("https://616b1eb916e7120017fa1233.mockapi.io/users")
     fetch(`${API_URL}/users`)
+    // fetch(`${API_URL}/users`,{
+    //   method:"GET",
+    // }) 
       .then((data) => data.json())
       .then((urs) => setUsers(urs));
   }, []);
@@ -200,7 +203,7 @@ function App() {
               <AddUser />
             </Route>
             <Route path="/users">
-              <UserList />
+              <UserList users={users} />
             </Route>
             
             <Route path="/form">
