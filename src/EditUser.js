@@ -143,7 +143,7 @@ function UpdatedUser({ user }) {
       
       />
      
-    <Button color="success" variant="outlined" type="submit">
+    <Button  onClick={editUser} color="success" variant="outlined" type="submit">
     Save
     </Button>
   </form>
